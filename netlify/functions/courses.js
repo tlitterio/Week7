@@ -38,7 +38,7 @@ let firebase = require(`./firebase`)
 exports.handler = async function(event) {
 
   // get the course number being requested
-
+  let course = event.queryStringParameters.courseNumber
   // establish a connection to firebase in memory
 
   // ask Firebase for the course that corresponds to the course number, wait for the response

@@ -21,13 +21,18 @@ let firebase = require(`./firebase`)
 // /.netlify/functions/posts
 exports.handler = async function(event) {
   // define an empty Array to hold the return value from our lambda
-
+  let returnValue = []
   // establish a connection to firebase in memory
-
+  let db = firebase.firestore()
   // perform a query against firestore for all posts, wait for it to return, store in memory
-
+  let postsQuery = await db.collection('posts').get()
   // retrieve the documents from the query
-
+  let posts = postsQuery.docs
+  console.log(posts)
+  // for (let i=0; i<posts.length; i++){
+  //   let post = posts[i]
+  //   let postId = post.postIdconsole.log(postId)
+  // }
   // loop through the post documents
     // get the id from the document
     // get the data from the document
@@ -44,6 +49,6 @@ exports.handler = async function(event) {
   // return value of our lambda
   return {
     statusCode: 200,
-    body: `Hello from the back-end!`
+    body: JSON.stringify(returnValue)
   }
 }
